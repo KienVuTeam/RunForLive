@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Layout </title>
+        <link href="~/css/reset_css.css" rel="stylesheet" />
+    </head>
+    <body>
+        @await Component.InvokeAsync("Header");
+        <h1>Layout default</h1>
+        @RenderBody()
+    </body>
+    </html>
