@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Ảnh Lên Cloudinary</title>
+    <style>
+        #preview { margin-top: 20px; max-width: 100%; height: auto; display: none; }
+        .test{
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="test">
+        <h2>Upload Ảnh</h2>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="uploadImage()">Upload</button>
+
+    <p id="status"></p>
+    <img id="preview" alt="Preview Image">
+    </div>
+
+    <script>
+        async function uploadImage() {
+            const fileInput = document.getElementById("fileInput");
+            const status = document.getElementById("status");
+            const preview = document.getElementById("preview");
+
+            if (!fileInput.files.length) {
+                status.innerText = "⚠️ Vui lòng chọn một file ảnh.";
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                status.innerText = "⏳ Đang upload...";
+
+                const response = await fetch("/cloudinary/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    status.innerText = "✅ Upload thành công!";
+                    preview.src = data.url;  // Hiển thị ảnh đã upload
+                    console.log("img path: ",data.url);
+                    preview.style.display = "block";
+                } else {
+                    status.innerText = `❌ Lỗi: ${data.Message}`;
+                }
+            } catch (error) {
+                status.innerText = `❌ Lỗi kết nối: ${error.message}`;
+            }
+        }
+    </script>
+
+</body>
+</html>

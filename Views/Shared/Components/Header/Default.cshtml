@@ -4,4 +4,104 @@
 @{
 
 }
-<h2>Header view component</h2>
+<style>
+    a {
+        text-decoration: none;
+
+    }
+
+    header{
+        height: 65px;
+        position: fixed;
+        z-index: 1000;
+        top:0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
+    }
+    header .main-content{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%; /* Đảm bảo nó chiếm toàn bộ chiều ngang */
+        max-width: 1140px; /* Giữ giới hạn tối đa */
+    }
+    .main-content {
+      
+
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 65px;
+    }
+
+    nav ul li:hover {
+        border-bottom: 2px solid #FD5056;
+    }
+
+    .navbar li a {
+        @* border: 1px solid #000; *@
+        display: block;
+        padding: 0px 30px;
+        @* margin: 0 10px; *@
+        @* height: 65px; *@
+        text-align: center;
+        color: #202020;
+        font-size: 1.6rem;
+        color:#202020;
+        font-weight: 500;
+        line-height: 4.06;
+    }
+    
+
+    .navbar .group_actions {
+        margin: auto;
+    }
+    header .logo img{
+        @* width: 70px; *@
+        height: 65px;
+        object-fit: cover;
+    }
+    .btn-register{
+        display: inline-block;
+        text-align: center;
+        line-height: 1.9;
+        height: 35px;
+        width: 123px;
+        background-color: #FD5056;
+        color: #fff;
+        font-size: 1.6rem;
+        border: none;
+        border-radius: 6px;
+        padding: 2px 20px;
+    }
+</style>
+<header >
+    <div class="main-content">
+        <div class="logo">
+            <a href="#">
+                <img src="~/imgs/logo_kv.png" alt="logo" class="logo_icon">
+            </a>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="active"><a href="#" >Sự kiện</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Dinh dưỡng giải chạy</a></li>
+            </ul>
+        </nav>
+        <div class="group_actions">
+            <a href="#" class="btn-register">Đăng ký</a>
+        
+        </div>
+    </div>
+</header>

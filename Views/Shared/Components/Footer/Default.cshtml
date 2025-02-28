@@ -1,0 +1,145 @@
+<style>
+    footer {}
+
+    .footer-container {
+        @* width: 100%; *@
+        max-width: 1170px;
+        min-height: 310px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+
+        @* background-color: #ccc; *@
+    }
+
+    .footer-column {
+        flex: 1;
+        padding: 5px 15px;
+        min-width: 20px;
+        @* background-color: red; *@
+    }
+
+    footer .footer-column h4.title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 7px 0;
+    }
+    footer .footer-column p.info{
+        font-size: 1.5rem;
+        font-weight: 400;
+        color:#202020;
+        display: flex;
+        
+        align-items: center;
+        padding-top: 10px;
+        line-height: 1.4;
+    }
+    footer .footer-column .desc{
+        font-size: 1.4rem;
+        line-height: 1.2;
+    }
+    footer .footer-column .icon{
+        padding-right: 8px;
+    }
+    footer .footer-column ul {
+        list-style: circle;
+    }
+    footer .footer-column ul li{
+        padding: 5px 0;
+    }
+    footer .footer-column ul li a{
+        color:#000;
+        font-size: 1.35rem;
+
+    }
+    footer .fanpage_style .body{
+        height: 120px;
+        max-width: 300px;
+        background: transparent;
+        border:1px solid #ebedf0;
+    }
+    footer .box-top{
+        @* background-color: #fff; *@
+        align-items: center;
+    }
+    footer .box-top a{object-fit: cover;}
+    footer .box-top img{display: inline-block; height: 90px; }
+    footer .box-content{
+        background-color: #ccc;
+        display: flex; justify-content: space-between;
+        }
+    footer .box-content button{
+        margin:5px;
+        border:1px solid #ebedf0; background:fixed transparent; padding: 5px; font-weight: 700;}
+    
+</style>
+<footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h4 class="title">Giới thiệu</h4>
+            <p class="info">
+                Timve365 là đơn vị chuyên bán vé các sự kiện thể thao tại Việt Nam mang lại nhiều trải nghiệm mới mẻ cho
+                các VĐV.
+            </p>
+            <p class="info">
+                <span  class="material-symbols-outlined icon">
+                    home
+                </span>
+                <span class="desc">Penthouse Block C, tầng 16, Cao ốc Charmington Lapointe, 181 Cao Thắng Nối Dài,
+                    Phường 12, Quận 10, TP. Hồ Chí Minh, Việt Nam</span>
+            </p>
+            <p class="info">
+                <span  class="material-symbols-outlined icon">
+                    call
+                </span>
+                <span class="desc">
+                    Hotline: 097 7005 090 - 096 7711 365</span>
+            </p>
+            <p class="info">
+                <span  class="material-symbols-outlined icon">
+                    mail
+                </span>
+                <span class="desc">info@timve365.vn</span>
+            </p>
+        </div>
+        <div class="footer-column">
+            <h4 class="title">Hỗ trợ</h4>
+            <ul>
+                <li><a href="#">Hợp tác với chúng tôi</a></li>
+                <li><a href="#">Hướng dẫn mua vé</a></li>
+                <li><a href="#">Câu hỏi thường gặp</a></li>
+            </ul>
+            
+
+        </div>
+        <div class="footer-column">
+            <h4 class="title">Điều khoản</h4>
+            <ul>
+                <li><a href="#">Giải quyết khiếu nại</a></li>
+                <li><a href="#">Bảo mật thông tin</a></li>
+                <li><a href="#">Quy trình giao dịch</a></li>
+            </ul>
+
+        </div>
+        <div class="footer-column">
+            <h4 class="title">Fanpage</h4>
+            <div class="fanpage_style">
+                <div class="body">
+                    <div class="box-top">
+                        <a href="#">
+                            <img src="~/imgs/logo_kv.png" alt="">
+                        </a>
+                    </div>
+                    <div class="box-content">
+                        <button>Follow page</button>
+                        <button>Share</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</footer>

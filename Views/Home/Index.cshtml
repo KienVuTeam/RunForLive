@@ -1,7 +1,348 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    // Layout ="_Layout";
-}
-<h2>Index page</h2>
+﻿<style>
+    .event-container {
+        max-width: 1140px;
+        margin: 40px auto;
+    }
+    .event-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .event {
+        flex: 1 1 300px; /* Đảm bảo mỗi item tối thiểu 300px */
+        max-width: 360px; /* Giới hạn chiều rộng tối đa */
+        height: 400px;
+        /* background-color: red; */
+        /* border: 1px solid green; */
+        border-radius: 6px;
+        background-color: white;
+        border: 1px solid #efefef;
+        box-shadow: 0 0 10px 0 #ddd6;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    .event:hover,
+    .event:focus {
+        transform: translateY(-5px);
+        -webkit-transform: translateY(-5px);
+        box-shadow: 0 0 10px 0 rgba(65, 63, 63, 0.4);
+    }
+    .event .e-img {
+        display: inline-block;
+        object-fit: cover;
+        width: 100%;
+        height: 215px;
+        border-radius: 5px 6px 0 0;
+    }
+    .event .e-body {
+        padding: 15px;
+    }
+    .event p.title {
+        color: #4a8ecc;
+        font-size: 1.8rem;
+        line-height: 1.1;
+        margin: 5px 0;
+    }
+    .event-container .event p.place {
+        display: flex;
+        align-items: center;
+        font-size: 1.6rem;
+        /* padding-top: 3px; */
+        color: #666;
+    }
+    .event-container .event p.date_time {
+        display: flex;
+        align-items: center;
+        /* padding-top: 3px; */
+        font-size: 1.6rem;
+        color: #666;
+    }
+    .event-container .event p.price {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: #fd5056;
+        overflow: hidden;
+    }
+    .event-container .event p.place span,
+    .event-container .event p.date_time span,
+    .event-container .event p.price span {
+        margin-right: 10px;
+    }
+    /*### wcw */
+    .wcw-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+        min-height: 315px;
+    }
+    .wcw-container h4.title {
+        font-size: 2.4rem;
+        text-align: center;
+        margin: 30px 0;
+        color: #202020;
+        font-weight: bold;
+        position: relative;
+    }
+    .wcw-container h4.title::after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        width: 60px;
+        height: 3px;
+        background-color: #fd5056;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -10px;
+    }
+    .wcw-container .wrap-stats {
+        /* height: 232px; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .wcw-container .wrap-stats .stats-item {
+        flex: 1 1 270px;
+        max-width: 270px;
+        height: 275px;
+        background-color: #fff;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        /*  */
+        aspect-ratio: 1;
+        border-radius: 24px;
+        box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.06);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        row-gap: 10px;
+        padding: 15px;
+        /* height: 100%; */
+    }
+    .wcw-container .stats-item .stats-body {
+        align-items: center;
+        padding: 20px;
+    }
+    .wcw-container .stats-item .icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        /* background-color: green; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 20px;
+    }
+    .wcw-container .stats-item .icon.blue {
+        background-color: #4a8ecc;
+    }
+    .wcw-container .stats-item .icon.purple {
+        background-color: #9561e0;
+    }
+    .wcw-container .stats-item .icon.orange {
+        background-color: #fd9d38;
+    }
+    .wcw-container .stats-item .icon.red {
+        background-color: #f00000;
+    }
+    /*  */
+    .wcw-container .stats-item .count {
+        font-size: 2.24rem;
+        font-weight: bold;
+        padding: 0 0 20px;
+    }
+    .wcw-container .stats-item .desc {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    .subcribe-container {
+        /* background-color: #ccc; */
+        /* min-height: 500px; */
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .subcribe-container .main-content {
+        width: 100%; /* Quan trọng: giúp ảnh không bị tràn */
+        max-width: 1140px; /* Giới hạn max để không quá rộng */
+        min-height: 500px; /* Định chiều cao tối thiểu */
+        margin: 0 auto;
+        background-image: url('@Url.Content("~/img-runner/bg_subscribe.png")');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 60px 40px;
+        border-radius: 24px;
+    }
+    /* ###subcribe  */
+</style>
+
+<!-- ### Event -->
+<div class="event-container">
+    <div class="event-list">
+        <!-- item -->
+        <div class="event">
+            <img src="~/img-runner/dak-lak.png" alt="" class="e-img" />
+            <div class="e-body">
+                <p class="title">GIẢI VIỆT DÃ TRUYỀN THỐNG KPĂ KLƠNG THÀNH PHỐ PLEIKU LẦN THỨ 45 NĂM 2025</p>
+                <div>
+                    <p class="place"><span class="material-symbols-outlined"> location_on </span>Gia Lai</p>
+                    <p class="date_time">
+                        <span class="material-symbols-outlined"> calendar_month </span>23/03/25 4:30 AM
+                    </p>
+                    <p class="price">
+                        <span class="material-symbols-outlined" style="color: #4f5d89"> sell </span>150.000-350.000 d
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- item -->
+        <div class="event">
+            <img src="~/img-runner/buon-ho.jpg" alt="" class="e-img" />
+            <div class="e-body">
+                <p class="title">GIẢI VIỆT DÃ TRUYỀN THỐNG KPĂ KLƠNG THÀNH PHỐ PLEIKU LẦN THỨ 45 NĂM 2025</p>
+                <div>
+                    <p class="place"><span class="material-symbols-outlined"> location_on </span>Gia Lai</p>
+                    <p class="date_time">
+                        <span class="material-symbols-outlined"> calendar_month </span>23/03/25 4:30 AM
+                    </p>
+                    <p class="price">
+                        <span class="material-symbols-outlined" style="color: #4f5d89"> sell </span>150.000-350.000 d
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- item -->
+        <div class="event">
+            <img src="~/img-runner/da-lat.jpg" alt="" class="e-img" />
+            <div class="e-body">
+                <p class="title">GIẢI VIỆT DÃ TRUYỀN THỐNG KPĂ KLƠNG THÀNH PHỐ PLEIKU LẦN THỨ 45 NĂM 2025</p>
+                <div>
+                    <p class="place"><span class="material-symbols-outlined"> location_on </span>Gia Lai</p>
+                    <p class="date_time">
+                        <span class="material-symbols-outlined"> calendar_month </span>23/03/25 4:30 AM
+                    </p>
+                    <p class="price">
+                        <span class="material-symbols-outlined" style="color: #4f5d89"> sell </span>150.000-350.000 d
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- item -->
+        <div class="event">
+            <img src="~/img-runner/lam-dong.jpg" alt="" class="e-img" />
+            <div class="e-body">
+                <p class="title">GIẢI VIỆT DÃ TRUYỀN THỐNG KPĂ KLƠNG THÀNH PHỐ PLEIKU LẦN THỨ 45 NĂM 2025</p>
+                <div>
+                    <p class="place"><span class="material-symbols-outlined"> location_on </span>Gia Lai</p>
+                    <p class="date_time">
+                        <span class="material-symbols-outlined"> calendar_month </span>23/03/25 4:30 AM
+                    </p>
+                    <p class="price">
+                        <span class="material-symbols-outlined" style="color: #4f5d89"> sell </span>150.000-350.000 d
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- item -->
+        <div class="event">
+            <img src="~/img-runner/pka-klong.jpg" alt="" class="e-img" />
+            <div class="e-body">
+                <p class="title">GIẢI VIỆT DÃ TRUYỀN THỐNG KPĂ KLƠNG THÀNH PHỐ PLEIKU LẦN THỨ 45 NĂM 2025</p>
+                <div>
+                    <p class="place"><span class="material-symbols-outlined"> location_on </span>Gia Lai</p>
+                    <p class="date_time">
+                        <span class="material-symbols-outlined"> calendar_month </span>23/03/25 4:30 AM
+                    </p>
+                    <p class="price">
+                        <span class="material-symbols-outlined" style="color: #4f5d89"> sell </span>150.000-350.000 d
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- item -->
+        <div class="event">
+            <img src="~/img-runner/dak-lak.png" alt="" class="e-img" />
+            <div class="e-body">
+                <p class="title">GIẢI VIỆT DÃ TRUYỀN THỐNG KPĂ KLƠNG THÀNH PHỐ PLEIKU LẦN THỨ 45 NĂM 2025</p>
+                <div>
+                    <p class="place"><span class="material-symbols-outlined"> location_on </span>Gia Lai</p>
+                    <p class="date_time">
+                        <span class="material-symbols-outlined"> calendar_month </span>23/03/25 4:30 AM
+                    </p>
+                    <p class="price">
+                        <span class="material-symbols-outlined" style="color: #4f5d89"> sell </span>150.000-350.000 d
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- item -->
+        <div class="event">
+            <img src="~/img-runner/dak-lak.png" alt="" class="e-img" />
+            <div class="e-body">
+                <p class="title">GIẢI VIỆT DÃ TRUYỀN THỐNG KPĂ KLƠNG THÀNH PHỐ PLEIKU LẦN THỨ 45 NĂM 2025</p>
+                <div>
+                    <p class="place"><span class="material-symbols-outlined"> location_on </span>Gia Lai</p>
+                    <p class="date_time">
+                        <span class="material-symbols-outlined"> calendar_month </span>23/03/25 4:30 AM
+                    </p>
+                    <p class="price">
+                        <span class="material-symbols-outlined" style="color: #4f5d89"> sell </span>150.000-350.000 d
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ### WhyChooseWe-->
+<div class="wcw-container">
+    <div class="main-content">
+        <h4 class="title">Tại sao chọn chúng tôi</h4>
+        <div class="wrap-stats">
+            <div class="stats-item">
+                <div class="stats-body">
+                    <p class="icon blue">
+                        <span class="material-symbols-outlined"> pending_actions </span>
+                    </p>
+                    <p class="count">550+</p>
+                    <p class="desc">Sự kiện thể thao trực tuyến và thực tế</p>
+                </div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-body">
+                    <p class="icon purple">
+                        <span class="material-symbols-outlined"> payments </span>
+                    </p>
+                    <p class="count">375.000+</p>
+                    <p class="desc">Giao dịch</p>
+                </div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-body">
+                    <p class="icon orange"><span class="material-symbols-outlined"> group_add </span></p>
+                    <p class="count">200.000+</p>
+                    <p class="desc">Ngừi tham gia</p>
+                </div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-body">
+                    <p class="icon red"><span class="material-symbols-outlined"> local_fire_department </span></p>
+                    <p class="count">700.000+</p>
+                    <p class="desc">Traffic truy cập/tháng</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ### Subcribe -->
+<div class="subcribe-container">
+    <div class="main-content"></div>
+</div>

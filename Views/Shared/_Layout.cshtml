@@ -2,14 +2,35 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Layout </title>
-        <link href="~/css/reset_css.css" rel="stylesheet" />
-    </head>
-    <body>
-        @await Component.InvokeAsync("Header");
-        <h1>Layout default</h1>
-        @RenderBody()
-    </body>
-    </html>
+<html>
+
+<head>
+    <title>Layout </title>
+    <link href="~/css/reset_css.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- gg font  -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+        <!-- #gg icon -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+</head>
+
+<body>
+    @await Component.InvokeAsync("Header")
+    <div class="slider-show">
+            <img src="~/img-runner/bien-hoa.webp" alt="">
+    </div>
+    @RenderBody() 
+    <div class="img_near_footer">
+        <img src="~/img-runner/footer_img.jpg" alt="">
+    </div>
+
+    
+    @await Component.InvokeAsync("Footer")
+</body>
+
+</html>

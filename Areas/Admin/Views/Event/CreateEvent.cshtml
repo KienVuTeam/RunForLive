@@ -1,0 +1,13 @@
+<form asp-area="Admin" asp-controller="Event" asp-action="CreateEvent" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Tên sản phẩm:</label>
+        <input type="text" name="Name" required />
+    </div>
+
+    <div>
+        <label>Hình ảnh:</label>
+        <input type="file" name="ImageFile" accept="image/*" required />
+    </div>
+
+    <button type="submit">Thêm sản phẩm</button>
+</form>
